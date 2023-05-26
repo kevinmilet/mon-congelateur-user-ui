@@ -16,7 +16,6 @@ const Header = () => {
 			<nav className={`navbar ${showLinks ? 'show-nav' : ''}`}>
 				<div className='navbar-logo'>
 					<img src={Logo} alt='Logo' className='logo' />
-					<h3>Mon Congélateur</h3>
 				</div>
 				<ul className='navbar-links'>
 					{menuData.map(item => (

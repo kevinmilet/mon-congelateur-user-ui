@@ -23,18 +23,18 @@ const menuItems = [
 		path: '/monespace/account',
 		icon: '',
 	},
-	{
-		id: 5,
-		name: 'A propos',
-		path: '/about',
-		icon: '',
-	},
-	{
-		id: 6,
-		name: 'Contact',
-		path: '/contact',
-		icon: '',
-	},
+	// {
+	// 	id: 5,
+	// 	name: 'A propos',
+	// 	path: '/about',
+	// 	icon: '',
+	// },
+	// {
+	// 	id: 6,
+	// 	name: 'Contact',
+	// 	path: '/contact',
+	// 	icon: '',
+	// },
 ];
 
 export default menuItems;

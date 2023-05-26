@@ -14,8 +14,7 @@ const logout = () => {
 
 const isLogged = () => {
 	const token = localStorage.getItem('token');
-
-	return token;
+	return !!token;
 };
 
 const getToken = () => {

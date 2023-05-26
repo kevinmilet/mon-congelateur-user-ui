@@ -2,7 +2,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: start;
 	padding: 1rem;
 	position: relative;
 	width: 100vw;
@@ -36,7 +36,7 @@
 }
 
 .navbar-logo {
-	width: 300px;
+	width: 45px;
 	height: 45px;
 	display: flex;
 	align-items: center;
@@ -44,9 +44,6 @@
 	.logo {
 		width: 45px;
 		height: 45px;
-	}
-	h3 {
-		margin-left: 15px;
 	}
 }
 

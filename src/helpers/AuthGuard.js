@@ -1,11 +1,11 @@
 import { Navigate } from 'react-router-dom';
+import { authService } from '../services/auth.service';
 
 const AuthGuard = ({ children }) => {
-	let token = localStorage.getItem('token');
-
-	if (token === null) {
-		return <Navigate to='/' />;
+	if (!authService.isLogged()) {
+		return <Navigate to='../' />;
 	}
+
 	return children;
 };
 

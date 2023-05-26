@@ -10,7 +10,7 @@ export default Axios;
 
 // Intercepteur pour la mise en place du token dans la requête
 Axios.interceptors.request.use(request => {
-	if (authService.isLogged()) {
+	if (authService.isLogged() !== null) {
 		request.headers.Authorization = 'Bearer ' + authService.getToken();
 	}
 
