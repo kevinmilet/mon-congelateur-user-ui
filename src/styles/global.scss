@@ -9,3 +9,60 @@ ul {
 a {
 	text-decoration: none;
 }
+
+.edit-btn {
+	background-color: #57c4e5ff;
+	color: #fff;
+	border: none;
+	border-radius: 16px;
+	cursor: pointer;
+	width: 50px;
+	height: 50px;
+	margin: 10px;
+
+	svg {
+		margin-top: 3px;
+	}
+
+	&:hover {
+		background-color: #d55672ff;
+	}
+}
+
+.delete-btn {
+	background-color: #f44336;
+	color: #fff;
+	border: none;
+	border-radius: 16px;
+	cursor: pointer;
+	width: 50px;
+	height: 50px;
+
+	svg {
+		margin-top: 3px;
+	}
+
+	&:hover {
+		background-color: #ef9a9a;
+	}
+}
+
+.add-btn {
+	background-color: #57c4e5ff;
+	color: #fff;
+	border: none;
+	border-radius: 16px;
+	cursor: pointer;
+	width: 200px;
+	height: 50px;
+	margin: 10px;
+	font-size: 14px;
+
+	svg {
+		margin-top: 3px;
+	}
+
+	&:hover {
+		background-color: #d55672ff;
+	}
+}

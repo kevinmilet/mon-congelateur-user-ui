@@ -9,6 +9,7 @@ import Freezers from '../pages/authentified/Freezer/Freezers';
 import Products from '../pages/authentified/Product/Products';
 import Account from '../pages/authentified/User/Account';
 import FreezerDetails from '../pages/authentified/Freezer/FreezerDetails';
+import AddFreezer from '../pages/authentified/Freezer/AddFreezer';
 
 const AuthentifiedRouter = () => {
 	return (
@@ -19,6 +20,7 @@ const AuthentifiedRouter = () => {
 				<Route path='freezers'>
 					<Route index element={<Freezers />} />
 					<Route path='details/:id' element={<FreezerDetails />} />
+					<Route path='create' element={<AddFreezer />} />
 				</Route>
 				<Route path='products' element={<Products />} />
 				<Route path='account' element={<Account />} />

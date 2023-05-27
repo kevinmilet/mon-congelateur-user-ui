@@ -100,7 +100,6 @@ const ProductTable = ({ freezerId }) => {
 
 	return (
 		<div>
-			{/* {products.length > 0 ? ( */}
 			<DataTable
 				columns={columns}
 				data={products}

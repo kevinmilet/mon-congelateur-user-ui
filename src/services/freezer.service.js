@@ -8,7 +8,17 @@ const getFreezerById = id => {
 	return Axios.get(`/freezers/${id}`);
 };
 
+const createFreezer = datas => {
+	return Axios.put(`/freezers`, datas);
+};
+
+const updateFreezer = id => {
+	return Axios.patch(`/freezers/${id}`);
+};
+
 export const freezerService = {
 	getFreezersByUserid,
 	getFreezerById,
+	createFreezer,
+	updateFreezer,
 };

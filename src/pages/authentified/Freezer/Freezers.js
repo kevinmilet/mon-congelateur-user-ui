@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import FreezerCard from '../../../components/Freezer/FreezerCard';
 import './freezers.scss';
 import { freezerService } from '../../../services/freezer.service';
@@ -9,22 +9,31 @@ const Freezers = () => {
 	const navigate = useNavigate();
 	const [freezers, setFreezers] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const cleanFlag = useRef(false);
 
 	const id = 1;
 
 	useEffect(() => {
-		freezerService
-			.getFreezersByUserid(id)
-			.then(response => {
-				setFreezers(response.data.data);
-			})
-			.catch(error => console.error(error));
+		if (cleanFlag.current === false) {
+			freezerService
+				.getFreezersByUserid(id)
+				.then(response => {
+					setFreezers(response.data.data);
+				})
+				.catch(error => console.error(error));
 
-		setLoading(false);
+			setLoading(false);
+		}
+
+		return () => (cleanFlag.current = true);
 	}, []);
 
 	const handleClick = freezerId => {
 		navigate(`./details/${freezerId}`);
+	};
+
+	const addFreezer = () => {
+		navigate('./create');
 	};
 
 	return (
@@ -34,6 +43,11 @@ const Freezers = () => {
 			) : (
 				<>
 					<h1>Mes congélateurs</h1>
+					<div className='btn-container'>
+						<button className='add-btn' onClick={addFreezer}>
+							Ajouter un congélateur
+						</button>
+					</div>
 					<div className='freezers-grid'>
 						{freezers.map(freezer => (
 							<div
