@@ -6,6 +6,7 @@ import NotFound from '../pages/shared/NotFound';
 import PublicLayout from '../pages/public/Layouts/PublicLayout';
 import Signin from '../pages/auth/Signin';
 import Forgot from '../pages/public/forgot';
+import Signup from '../pages/public/Signup';
 
 const PublicRoute = () => {
 	return (
@@ -13,6 +14,7 @@ const PublicRoute = () => {
 			<Route element={<PublicLayout />}>
 				<Route index element={<Signin />} />
 				<Route path='/connexion' element={<Signin />} />
+				<Route path='/inscription' element={<Signup />} />
 				<Route path='/about' element={<About />} />
 				<Route path='/contact' element={<Contact />} />
 				<Route path='/forgot' element={<Forgot />} />

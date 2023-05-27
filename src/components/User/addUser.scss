@@ -10,7 +10,8 @@
 		padding: 1.5rem;
 
 		input[type='email'],
-		input[type='password'] {
+		input[type='password'],
+		input[type='text'] {
 			width: 100%;
 			padding: 12px 20px;
 			margin: 8px 0;
@@ -25,7 +26,7 @@
 			}
 		}
 
-		.connexion-btn {
+		.signup-btn {
 			background-color: #57c4e5ff;
 			color: #fff;
 			padding: 12px 20px;
@@ -39,15 +40,9 @@
 			&:hover {
 				background-color: #d55672ff;
 			}
-		}
 
-		.img-container {
-			text-align: center;
-			margin: 24px 0 12px 0;
-
-			img.avatar {
-				width: 40%;
-				border-radius: 50%;
+			&:disabled {
+				background-color: #e0e0e0;
 			}
 		}
 	}
@@ -63,10 +58,15 @@
 		justify-content: space-around;
 	}
 
-	.error-msg {
+	#success {
+		margin-bottom: 10px;
+		text-align: center;
+		color: #d55672ff;
+	}
+
+	#server-error {
+		margin-bottom: 10px;
+		text-align: center;
 		color: red;
-		font-style: italic;
-		font-size: 0.8em;
-		margin-left: 10px;
 	}
 }

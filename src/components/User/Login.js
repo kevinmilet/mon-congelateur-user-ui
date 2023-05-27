@@ -54,7 +54,7 @@ const Login = () => {
 
 						<div className='container'>
 							<label htmlFor='email'>
-								<b>Email</b>{' '}
+								<b>Email</b>
 								<span className='error-msg'>{errors.email?.message}</span>
 							</label>
 							<input
@@ -84,8 +84,9 @@ const Login = () => {
 							/>
 						</div>
 
-						<div className='password'>
+						<div className='bottom-container'>
 							<Link to='/forgot'>Mot de passe oublié?</Link>
+							<Link to='/inscription'>Pas encore inscrit?</Link>
 						</div>
 					</form>
 				</div>
