@@ -37,7 +37,14 @@ const Login = () => {
 				// setUserInfos(response.data.userName);
 				navigate('/monespace');
 			})
-			.catch(error => console.error(error));
+			.catch(error => {
+				console.error(error);
+				handleError(error.response);
+			});
+	};
+
+	const handleError = response => {
+		document.getElementById('server-error').innerHTML = response.data.message;
 	};
 
 	return (
@@ -47,6 +54,7 @@ const Login = () => {
 			</div>
 			<div className='login-container'>
 				<div className='login-form-container'>
+					<div id='server-error'></div>
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<div className='img-container'>
 							<img src={Avatar} alt='Avatar' className='avatar' />
