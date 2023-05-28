@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import './editFreezer.scss';
+import { useNavigate, useParams } from 'react-router-dom';
 import { freezerService } from '../../../services/freezer.service';
 import { utilsService } from '../../../services/utils.service';
 import './freezerDetails.scss';
@@ -9,6 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 const FreezerDetails = () => {
 	const { id } = useParams();
+	const navigate = useNavigate();
 	const [freezer, setFreezer] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const cleanFlag = useRef(false);
@@ -31,7 +33,7 @@ const FreezerDetails = () => {
 	};
 
 	const onEditClick = id => {
-		console.log('edit ' + id);
+		navigate('../edit/' + id);
 	};
 
 	return (
@@ -47,7 +49,7 @@ const FreezerDetails = () => {
 							<span className='skeleton'></span>
 						)}
 					</h1>
-					<div className='table-container '>
+					<div>
 						<ProductTable freezerId={freezer.id} />
 					</div>
 					<div className='btn-container'>

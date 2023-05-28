@@ -12,8 +12,8 @@ const createFreezer = datas => {
 	return Axios.put(`/freezers`, datas);
 };
 
-const updateFreezer = id => {
-	return Axios.patch(`/freezers/${id}`);
+const updateFreezer = datas => {
+	return Axios.patch(`/freezers/${datas.id}`, datas);
 };
 
 export const freezerService = {

@@ -1,5 +1,4 @@
 import React from 'react';
-import './freezerCard.scss';
 import Congelateur from '../../assets/img/freezer.png';
 import { utilsService } from '../../services/utils.service';
 

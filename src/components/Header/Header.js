@@ -13,7 +13,6 @@ const Header = () => {
 	};
 
 	const logout = () => {
-		console.log('logout');
 		authService.logout();
 		navigate('/');
 	};

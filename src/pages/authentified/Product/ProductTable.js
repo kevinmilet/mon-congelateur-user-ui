@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './productTable.scss';
 import dayjs from 'dayjs';
 import { productService } from '../../../services/product.service';
-import { utilsService } from '../../../services/utils.service';
 import Loader from '../../../components/Tools/Loader';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ProductCard from '../../../components/Product/ProductCard';
 require('dayjs/locale/fr');
 
 const ProductTable = ({ freezerId }) => {
@@ -19,10 +17,6 @@ const ProductTable = ({ freezerId }) => {
 
 	const handleEdit = product => {
 		console.log('Edited Rows: ', product);
-		productService
-			.getProductById(product.id)
-			.then(res => console.log(res.data.data))
-			.catch(err => console.log(err));
 	};
 
 	const handleDelete = productId => {
@@ -51,7 +45,7 @@ const ProductTable = ({ freezerId }) => {
 
 	// Pagination
 	const [currentPage, setCurrentPage] = useState(1);
-	const itemsPerPage = 10;
+	const itemsPerPage = 6;
 	const lastPage = currentPage * itemsPerPage;
 	const firstPage = lastPage - itemsPerPage;
 	const items = products.slice(firstPage, lastPage);
@@ -74,58 +68,27 @@ const ProductTable = ({ freezerId }) => {
 		setCurrentPage(id);
 	};
 
-	console.log('fist ' + firstPage);
-	console.log('last ' + lastPage);
-	console.log('current ' + currentPage);
-	console.log('numbers ' + numbers.length);
-
 	return (
 		<main className='freezers-content-container'>
 			{loading ? (
 				<Loader />
 			) : (
 				<>
-					{products.length === 0 ? (
-						<div className='empty'>Votre congélateur est vide !</div>
-					) : (
-						<table>
-							<thead>
-								<tr>
-									<th>Nom</th>
-									<th>Quantité</th>
-									<th>Date d'ajout</th>
-									<th>Type de produit</th>
-									<th></th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								{items?.map(product => (
-									<tr key={product.product_id}>
-										<td>{utilsService.capitalize(product.name)}</td>
-										<td>{product.quantity}</td>
-										<td>
-											{dayjs(product.adding_date)
-												.locale('fr')
-												.format('DD MMMM YYYY')}
-										</td>
-										<td>
-											{utilsService.capitalize(product?.ProductType?.name)}
-										</td>
-										<td className='btn' onClick={() => handleEdit(product)}>
-											{<EditIcon />}
-										</td>
-										<td
-											className='btn'
-											onClick={() => handleDelete(product.id)}
-										>
-											{<DeleteIcon />}
-										</td>
-									</tr>
-								))}
-							</tbody>
-						</table>
-					)}
+					<h4>Vous avez {products.length} article(s) dans ce congélateur</h4>
+					<div className='products-grid'>
+						{items.map(product => (
+							<div
+								className='freezer-item'
+								key={product.product_id}
+								onClick={() => handleClick(product.id)}
+							>
+								<ProductCard
+									product={product}
+									productType={product.ProductType}
+								/>
+							</div>
+						))}
+					</div>
 
 					{products.length >= itemsPerPage && (
 						<nav className='pagination-container'>

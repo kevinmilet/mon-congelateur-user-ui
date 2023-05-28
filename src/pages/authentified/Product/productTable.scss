@@ -1,31 +1,18 @@
 .freezers-content-container {
-	table {
-		border-collapse: collapse;
-		width: 100%;
+	.products-grid {
+		max-width: 100%;
+		width: 80%;
+		height: auto;
+		margin: 30px auto;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, 300px);
+		justify-content: center;
+		grid-gap: 20px;
 
-		thead {
-			border-bottom: 1px solid #e0e0e0;
-			background-color: #57c4e5ff;
+		.freezer-item {
+			width: 300px;
+			height: 200px;
 		}
-
-		td,
-		th {
-			text-align: left;
-			padding: 8px;
-		}
-
-		tr:nth-child(even) {
-			background-color: #f2f2f2;
-		}
-	}
-
-	.empty {
-		text-align: center;
-		margin: 20px auto;
-	}
-
-	.btn {
-		cursor: pointer;
 	}
 
 	.pagination-container {
