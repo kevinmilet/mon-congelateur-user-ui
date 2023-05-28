@@ -1,0 +1,60 @@
+.freezers-content-container {
+	table {
+		border-collapse: collapse;
+		width: 100%;
+
+		thead {
+			border-bottom: 1px solid #e0e0e0;
+			background-color: #57c4e5ff;
+		}
+
+		td,
+		th {
+			text-align: left;
+			padding: 8px;
+		}
+
+		tr:nth-child(even) {
+			background-color: #f2f2f2;
+		}
+	}
+
+	.empty {
+		text-align: center;
+		margin: 20px auto;
+	}
+
+	.btn {
+		cursor: pointer;
+	}
+
+	.pagination-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 20px 0 0 0;
+
+		.pagination {
+			display: flex;
+
+			.page-link {
+				width: 20px;
+				height: 20px;
+			}
+
+			.page-item {
+				cursor: pointer;
+				margin: 0 5px;
+			}
+
+			.active {
+				color: #d55672ff;
+				font-weight: 700;
+			}
+
+			.disabled {
+				display: none;
+			}
+		}
+	}
+}

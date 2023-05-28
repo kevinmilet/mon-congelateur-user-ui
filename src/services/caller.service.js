@@ -6,8 +6,6 @@ const Axios = axios.create({
 	baseURL: 'https://myfreezer-api.kevin-milet.fr',
 });
 
-export default Axios;
-
 // Intercepteur pour la mise en place du token dans la requête
 Axios.interceptors.request.use(request => {
 	if (authService.isLogged() !== null) {
@@ -16,3 +14,21 @@ Axios.interceptors.request.use(request => {
 
 	return request;
 });
+
+// Intercepteur pour rediriger vers la connexion si on a été déconnecté
+Axios.interceptors.response.use(
+	response => {
+		return response;
+	},
+	error => {
+		if (error.response.status === 401) {
+			authService.logout();
+			console.info('Vous avez été déconnecté...');
+			window.location = '/';
+		} else {
+			return Promise.reject(error);
+		}
+	}
+);
+
+export default Axios;

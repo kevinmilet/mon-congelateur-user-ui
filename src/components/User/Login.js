@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './login.scss';
 import Avatar from '../../assets/img/avatar.png';
 import { Link, useNavigate } from 'react-router-dom';
@@ -6,10 +6,12 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { authService } from '../../services/auth.service';
+import Cookies from 'js-cookie';
+import sha256 from 'sha256';
 
 const Login = () => {
 	const navigate = useNavigate();
-	//const [userInfos, setUserInfos] = useState({});
+	const [userInfos, setUserInfos] = useState({});
 
 	const validationSchema = Yup.object()
 		.shape({
@@ -17,12 +19,15 @@ const Login = () => {
 				.required("L'email est requis")
 				.email("L'email est invalide"),
 			password: Yup.string().required('Le mot de passe est requis'),
+			remember: Yup.boolean(),
 		})
 		.required();
 
 	const { register, handleSubmit, formState } = useForm({
 		defaultValues: {
 			email: '',
+			password: '',
+			remember: false,
 		},
 		resolver: yupResolver(validationSchema),
 	});
@@ -34,7 +39,21 @@ const Login = () => {
 			.login(credentials)
 			.then(response => {
 				authService.saveToken(response.data.jwt_token);
-				// setUserInfos(response.data.userName);
+
+				const currentUser = authService.getPayload();
+				setUserInfos(currentUser);
+
+				if (credentials.remember) {
+					console.log('ici');
+					Cookies.set(
+						'mon-congelateur',
+						sha256(
+							userInfos.account_id + userInfos.firstname + userInfos.lastname
+						),
+						{ expires: 30 }
+					);
+				}
+
 				navigate('/monespace');
 			})
 			.catch(error => {
@@ -84,6 +103,15 @@ const Login = () => {
 								name='password'
 								{...register('password')}
 							/>
+
+							{/* <input
+								type='checkbox'
+								name='remember'
+								id='remember'
+								className='remember'
+								{...register('remember')}
+							/>
+							<label htmlFor='remember'>Se souvenir de moi</label> */}
 
 							<input
 								type='submit'
