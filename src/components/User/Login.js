@@ -44,7 +44,6 @@ const Login = () => {
 				setUserInfos(currentUser);
 
 				if (credentials.remember) {
-					console.log('ici');
 					Cookies.set(
 						'mon-congelateur',
 						sha256(
@@ -53,7 +52,6 @@ const Login = () => {
 						{ expires: 30 }
 					);
 				}
-
 				navigate('/monespace');
 			})
 			.catch(error => {

@@ -22,6 +22,12 @@ Axios.interceptors.response.use(
 	},
 	error => {
 		if (error.response.status === 401) {
+			if (
+				error.response.data.message === 'Wrong password' ||
+				error.response.data.message === "This account does'nt exist"
+			) {
+				return Promise.reject(error);
+			}
 			authService.logout();
 			console.info('Vous avez été déconnecté...');
 			window.location = '/';
