@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import './modal.scss';
 import Close from '../../assets/icons/close.png';
 
-const Modal = ({ open }) => {
-	const [open, setOpen] = useState(false);
-
+const Modal = ({ openModal, setOpenModal, content, action }) => {
 	const toggleModal = () => {
-		setOpen(!open);
+		setOpenModal(false);
 	};
 
 	return (
@@ -15,26 +13,21 @@ const Modal = ({ open }) => {
 				Open
 			</button> */}
 
-			{open && (
+			{openModal && (
 				<div className='overlay'>
 					<div className='modal'>
-						<div className='modal-title'>
-							<h2>Hello Modale</h2>
-						</div>
 						<div className='modal-content'>
-							<p>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit.
-								Adipisci obcaecati recusandae rerum dolor asperiores ullam nemo,
-								magnam deleniti iusto laborum doloribus dignissimos nam labore
-								perspiciatis fuga ipsa optio facilis magni.
-							</p>
+							<p>{content}</p>
 							<button className='close-modal' onClick={toggleModal}>
 								<img src={Close} alt='Close Button' />
 							</button>
 						</div>
 						<div className='modal-footer'>
-							<button className='footer-btn' onClick={toggleModal}>
-								Fermer
+							<button className='btn-cancel' onClick={toggleModal}>
+								Annuler
+							</button>
+							<button className='btn-confirm' onClick={action}>
+								Confirmer
 							</button>
 						</div>
 					</div>

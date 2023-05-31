@@ -15,6 +15,7 @@ const FreezerDetails = () => {
 	const [freezer, setFreezer] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [openModal, setOpenModal] = useState(false);
+	const [content, setContent] = useState('');
 	const cleanFlag = useRef(false);
 
 	useEffect(() => {
@@ -31,12 +32,17 @@ const FreezerDetails = () => {
 	}, [id]);
 
 	const onDeleteClick = id => {
-		console.log('delete ' + id);
+		setContent('Etes-vous sûr de vouloir supprimer ce congélateur?');
 		setOpenModal(true);
 	};
 
 	const onEditClick = id => {
 		navigate('../edit/' + id);
+	};
+
+	const deleteFreezer = id => {
+		console.log('delete ' + id);
+		setOpenModal(false);
 	};
 
 	return (
@@ -75,7 +81,12 @@ const FreezerDetails = () => {
 					</>
 				)}
 			</main>
-			<Modal open={openModal} />
+			<Modal
+				openModal={openModal}
+				setOpenModal={setOpenModal}
+				action={() => deleteFreezer(freezer.id)}
+				content={content}
+			/>
 		</>
 	);
 };
