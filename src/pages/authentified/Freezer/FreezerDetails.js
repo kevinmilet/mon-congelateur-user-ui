@@ -41,8 +41,13 @@ const FreezerDetails = () => {
 	};
 
 	const deleteFreezer = id => {
-		console.log('delete ' + id);
+		setLoading(true);
+		freezerService
+			.deleteFreezer(id)
+			.then(navigate('../freezers'))
+			.catch(err => console.error(err));
 		setOpenModal(false);
+		setLoading(false);
 	};
 
 	return (
