@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 import './modal.scss';
 import Close from '../../assets/icons/close.png';
 
-const Modal = () => {
+const Modal = ({ open }) => {
 	const [modal, setModal] = useState(false);
 
 	const toggleModal = () => {
-		setModal(!modal);
+		setModal(!open);
 	};
 
 	return (
 		<>
-			<button className='btn-modal' onClick={toggleModal}>
+			{/* <button className='btn-modal' onClick={toggleModal}>
 				Open
-			</button>
+			</button> */}
 
-			{modal && (
+			{open && (
 				<div className='overlay'>
 					<div className='modal'>
 						<div className='modal-title'>
