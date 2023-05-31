@@ -3,10 +3,10 @@ import './modal.scss';
 import Close from '../../assets/icons/close.png';
 
 const Modal = ({ open }) => {
-	const [modal, setModal] = useState(false);
+	const [open, setOpen] = useState(false);
 
 	const toggleModal = () => {
-		setModal(!open);
+		setOpen(!open);
 	};
 
 	return (
