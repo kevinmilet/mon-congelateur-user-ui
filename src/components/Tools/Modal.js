@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './modal.scss';
-import Close from '../../assets/icons/close.png';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Modal = ({ openModal, setOpenModal, content, action }) => {
 	const toggleModal = () => {
@@ -9,17 +9,13 @@ const Modal = ({ openModal, setOpenModal, content, action }) => {
 
 	return (
 		<>
-			{/* <button className='btn-modal' onClick={toggleModal}>
-				Open
-			</button> */}
-
 			{openModal && (
 				<div className='overlay'>
 					<div className='modal'>
 						<div className='modal-content'>
 							<p>{content}</p>
 							<button className='close-modal' onClick={toggleModal}>
-								<img src={Close} alt='Close Button' />
+								<CloseIcon />
 							</button>
 						</div>
 						<div className='modal-footer'>
