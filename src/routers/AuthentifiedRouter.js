@@ -8,9 +8,12 @@ import NotFound from '../pages/shared/NotFound';
 import Freezers from '../pages/authentified/Freezer/Freezers';
 import Products from '../pages/authentified/Product/Products';
 import Account from '../pages/authentified/User/Account';
+import EditAccount from '../pages/authentified/User/EditAccount';
 import FreezerDetails from '../pages/authentified/Freezer/FreezerDetails';
 import AddFreezer from '../pages/authentified/Freezer/AddFreezer';
 import EditFreezer from '../pages/authentified/Freezer/EditFreezer';
+import AddProduct from '../pages/authentified/Product/AddProduct';
+import EditProduct from '../pages/authentified/Product/EditProduct';
 
 const AuthentifiedRouter = () => {
 	return (
@@ -24,8 +27,15 @@ const AuthentifiedRouter = () => {
 					<Route path='create' element={<AddFreezer />} />
 					<Route path='edit/:id' element={<EditFreezer />} />
 				</Route>
-				<Route path='products' element={<Products />} />
-				<Route path='account' element={<Account />} />
+				<Route path='products'>
+					<Route index element={<Products />} />
+					<Route path='create' element={<AddProduct />} />
+					<Route path='edit/:id' element={<EditProduct />} />
+				</Route>
+				<Route path='account'>
+					<Route index element={<Account />} />
+					<Route path='edit' element={<EditAccount />} />
+				</Route>
 				<Route path='about' element={<About />} />
 				<Route path='contact' element={<Contact />} />
 			</Route>

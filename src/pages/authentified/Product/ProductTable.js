@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './productTable.scss';
 import dayjs from 'dayjs';
 import { productService } from '../../../services/product.service';
@@ -9,15 +10,12 @@ import ProductCard from '../../../components/Product/ProductCard';
 require('dayjs/locale/fr');
 
 const ProductTable = ({ freezerId }) => {
+	const navigate = useNavigate();
 	const localizedFormat = require('dayjs/plugin/localizedFormat');
 	dayjs.extend(localizedFormat);
 
 	const [products, setProducts] = useState([]);
 	const [loading, setLoading] = useState(true);
-
-	const handleEdit = product => {
-		console.log('Edited Rows: ', product);
-	};
 
 	const handleDelete = productId => {
 		console.log('Deleted Rows: ', productId);
@@ -25,6 +23,7 @@ const ProductTable = ({ freezerId }) => {
 
 	const handleClick = row => {
 		console.log('Selected Row id: ', row);
+		navigate(`../../products/edit/${row}`);
 	};
 
 	useEffect(() => {
@@ -42,6 +41,10 @@ const ProductTable = ({ freezerId }) => {
 				);
 		}
 	}, [freezerId]);
+
+	const addProduct = () => {
+		navigate('../../products/create');
+	};
 
 	// Pagination
 	const [currentPage, setCurrentPage] = useState(1);
@@ -74,7 +77,12 @@ const ProductTable = ({ freezerId }) => {
 				<Loader />
 			) : (
 				<>
-					<h4>Vous avez {products.length} article(s) dans ce congélateur</h4>
+					<div className='btn-container'>
+						<h4>Vous avez {products.length} article(s) dans ce congélateur</h4>
+						<button className='add-btn' onClick={addProduct}>
+							Ajouter un article
+						</button>
+					</div>
 					<div className='products-grid'>
 						{items.map(product => (
 							<div
