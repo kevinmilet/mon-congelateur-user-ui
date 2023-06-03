@@ -8,7 +8,7 @@ const getProductTypeById = id => {
 	return Axios.get(`/producttypes/${id}`);
 };
 
-export const freezerTypeService = {
+export const productTypeService = {
 	getAllProductTypes,
 	getProductTypeById,
 };

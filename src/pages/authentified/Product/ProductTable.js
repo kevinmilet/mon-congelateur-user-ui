@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './productTable.scss';
-import dayjs from 'dayjs';
 import { productService } from '../../../services/product.service';
 import Loader from '../../../components/Tools/Loader';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ProductCard from '../../../components/Product/ProductCard';
-require('dayjs/locale/fr');
 
 const ProductTable = ({ freezerId }) => {
 	const navigate = useNavigate();
-	const localizedFormat = require('dayjs/plugin/localizedFormat');
-	dayjs.extend(localizedFormat);
 
 	const [products, setProducts] = useState([]);
 	const [loading, setLoading] = useState(true);

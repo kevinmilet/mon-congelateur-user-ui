@@ -1,4 +1,5 @@
 import React from 'react';
+import './productCard.scss';
 import { utilsService } from '../../services/utils.service';
 import Fruits from '../../assets/img/apple.png';
 import Breads from '../../assets/img/buns.png';
@@ -12,8 +13,15 @@ import Homemade from '../../assets/img/piri-piri-chicken.png';
 import Industrial from '../../assets/img/pizza.png';
 import Snacks from '../../assets/img/vegan-burger.png';
 import Vegetables from '../../assets/img/vegetable.png';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import dayjs from 'dayjs';
+require('dayjs/locale/fr');
 
 const ProductCard = ({ product, productType }) => {
+	const localizedFormat = require('dayjs/plugin/localizedFormat');
+	dayjs.extend(localizedFormat);
+
 	let img;
 
 	switch (productType.id) {
@@ -58,7 +66,7 @@ const ProductCard = ({ product, productType }) => {
 	}
 
 	return (
-		<article className='card'>
+		<article className='product-card'>
 			<div className='img-container'>
 				<img src={img} alt={productType.name} />
 			</div>
@@ -67,6 +75,18 @@ const ProductCard = ({ product, productType }) => {
 					<b>{utilsService.capitalize(product.name)}</b>
 				</h4>
 				<p>{utilsService.capitalize(productType.name)}</p>
+				<small>
+					Ajouté le{' '}
+					{dayjs(product.adding_date).locale('fr').format('DD MMMM YYYY')}
+				</small>
+			</div>
+			<div class='card-overlay'>
+				<div class='edit-icon'>
+					<EditIcon />
+				</div>
+				<div class='trash-icon'>
+					<DeleteIcon />
+				</div>
 			</div>
 		</article>
 	);
