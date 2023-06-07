@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './productCard.scss';
 import { utilsService } from '../../services/utils.service';
 import Fruits from '../../assets/img/apple.png';
@@ -19,6 +20,7 @@ import dayjs from 'dayjs';
 require('dayjs/locale/fr');
 
 const ProductCard = ({ product, productType }) => {
+	const navigate = useNavigate();
 	const localizedFormat = require('dayjs/plugin/localizedFormat');
 	dayjs.extend(localizedFormat);
 
@@ -65,26 +67,38 @@ const ProductCard = ({ product, productType }) => {
 			img = Default;
 	}
 
+	const handleDelete = productId => {
+		console.log('Deleted Rows: ', productId);
+	};
+
+	const handleEdit = row => {
+		navigate(`../../products/edit/${row}`);
+	};
+
 	return (
 		<article className='product-card'>
-			<div className='img-container'>
-				<img src={img} alt={productType.name} />
+			<div className='product-card-header'>
+				<div className='img-container'>
+					<img src={img} alt={productType.name} />
+				</div>
+				<div className='product-type'>
+					<p>{utilsService.capitalize(productType.name)}</p>
+				</div>
 			</div>
 			<div className='container'>
 				<h4>
 					<b>{utilsService.capitalize(product.name)}</b>
 				</h4>
-				<p>{utilsService.capitalize(productType.name)}</p>
 				<small>
 					Ajouté le{' '}
 					{dayjs(product.adding_date).locale('fr').format('DD MMMM YYYY')}
 				</small>
 			</div>
-			<div class='card-overlay'>
-				<div class='edit-icon'>
+			<div className='product-card-footer'>
+				<div className='edit-icon' onClick={() => handleEdit(product.id)}>
 					<EditIcon />
 				</div>
-				<div class='trash-icon'>
+				<div className='trash-icon' onClick={() => handleDelete(product.id)}>
 					<DeleteIcon />
 				</div>
 			</div>

@@ -13,15 +13,6 @@ const ProductTable = ({ freezerId }) => {
 	const [products, setProducts] = useState([]);
 	const [loading, setLoading] = useState(true);
 
-	const handleDelete = productId => {
-		console.log('Deleted Rows: ', productId);
-	};
-
-	const handleClick = row => {
-		console.log('Selected Row id: ', row);
-		navigate(`../../products/edit/${row}`);
-	};
-
 	useEffect(() => {
 		if (freezerId !== undefined) {
 			productService
@@ -81,11 +72,7 @@ const ProductTable = ({ freezerId }) => {
 					</div>
 					<div className='products-grid'>
 						{items.map(product => (
-							<div
-								className='freezer-item'
-								key={product.product_id}
-								onClick={() => handleClick(product.id)}
-							>
+							<div className='freezer-item' key={product.product_id}>
 								<ProductCard
 									product={product}
 									productType={product.ProductType}

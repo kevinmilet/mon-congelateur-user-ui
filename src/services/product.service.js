@@ -9,7 +9,7 @@ const getProductsByUserId = id => {
 };
 
 const getProductById = id => {
-	return Axios.get(`/${id}`);
+	return Axios.get(`/products/${id}`);
 };
 
 const createProduct = datas => {
@@ -17,7 +17,7 @@ const createProduct = datas => {
 };
 
 const updateProduct = datas => {
-	return Axios.patch(`/products/${datas.id}`, datas);
+	return Axios.put(`/products/${datas.id}`, datas);
 };
 
 const deleteProduct = id => {

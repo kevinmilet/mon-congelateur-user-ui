@@ -28,7 +28,12 @@ const EditProduct = () => {
 		return () => (cleanFlag.current = true);
 	}, [id]);
 
-	return <div>{product.name}</div>;
+	return (
+		<>
+			<button onClick={() => navigate(-1)}>Go Back</button>
+			<div>{product.name}</div>
+		</>
+	);
 };
 
 export default EditProduct;

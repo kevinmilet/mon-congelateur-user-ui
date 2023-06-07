@@ -8,6 +8,7 @@ import { productService } from '../../../services/product.service';
 import { freezerService } from '../../../services/freezer.service';
 import { utilsService } from '../../../services/utils.service';
 import { useNavigate } from 'react-router-dom';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const AddProduct = () => {
 	const navigate = useNavigate();
@@ -84,6 +85,9 @@ const AddProduct = () => {
 			<h1>Ajouter un Article</h1>
 
 			<div className='form-container'>
+				<div className='goBack' onClick={() => navigate(-1)}>
+					<ArrowBackIosIcon />
+				</div>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<div className='container'>
 						<label htmlFor='name'>

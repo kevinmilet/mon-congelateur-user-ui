@@ -13,7 +13,7 @@ const untrashUser = userId => {
 };
 
 const updateUser = userId => {
-	return Axios.patch(`/users/${userId}`);
+	return Axios.put(`/users/${userId}`);
 };
 
 export const userService = {

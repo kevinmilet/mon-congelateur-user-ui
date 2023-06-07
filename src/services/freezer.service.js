@@ -13,7 +13,7 @@ const createFreezer = datas => {
 };
 
 const updateFreezer = datas => {
-	return Axios.patch(`/freezers/${datas.id}`, datas);
+	return Axios.put(`/freezers/${datas.id}`, datas);
 };
 
 const deleteFreezer = id => {

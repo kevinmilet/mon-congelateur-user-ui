@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import { freezerTypeService } from '../../../services/freezerTypes.service';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const EditFreezer = () => {
 	const { id } = useParams();
@@ -22,7 +23,11 @@ const EditFreezer = () => {
 		})
 		.required();
 
-	const { reset, register, handleSubmit, formState } = useForm({
+	const { register, handleSubmit, formState, setValue } = useForm({
+		defaultValues: {
+			name: '',
+			freezer_type_id: '',
+		},
 		resolver: yupResolver(validationSchema),
 	});
 
@@ -32,19 +37,19 @@ const EditFreezer = () => {
 		datas = {
 			...datas,
 			freezer_type_id: ~~datas.freezer_type_id,
-			id: id,
+			id: ~~id,
 		};
 
 		console.log(datas);
 
-		// freezerService
-		// 	.updateFreezer(datas)
-		// 	.then(response => {
-		// 		if (response.status === 200) {
-		// 			navigate('/monespace/freezers');
-		// 		}
-		// 	})
-		// 	.catch(error => console.error(error));
+		freezerService
+			.updateFreezer(datas)
+			.then(response => {
+				if (response.status === 200) {
+					navigate('/monespace/freezers');
+				}
+			})
+			.catch(error => console.error(error));
 	};
 
 	useEffect(() => {
@@ -53,10 +58,6 @@ const EditFreezer = () => {
 				.getFreezerById(id)
 				.then(response => {
 					setFreezer(response.data.data);
-					let defaultValues = {};
-					defaultValues.firstName = freezer.name;
-					defaultValues.lastName = freezer.freezer_type_id;
-					reset({ ...defaultValues });
 				})
 				.catch(error => console.error(error))
 				.finally(
@@ -66,11 +67,18 @@ const EditFreezer = () => {
 							setFreezerTypes(response.data.data);
 						})
 						.catch(error => console.error(error))
-						.finally(setLoading(false))
 				);
+			setLoading(false);
 		}
+
+		let name = freezer.name;
+		let freezerType = freezer.freezer_type_id;
+
+		setValue('name', utilsService.capitalize(name !== undefined ? name : ''));
+		setValue('freezer_type_id', freezerType);
+
 		return () => (cleanFlag.current = true);
-	}, [freezer.freezer_type_id, freezer.name, id, reset]);
+	}, [freezer?.freezer_type_id, freezer?.name, id, setValue]);
 
 	return (
 		<main className='edit-freezer-container'>
@@ -81,6 +89,9 @@ const EditFreezer = () => {
 			) : (
 				<>
 					<div className='form-container'>
+						<div className='goBack' onClick={() => navigate(-1)}>
+							<ArrowBackIosIcon />
+						</div>
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<div className='container'>
 								<label htmlFor='name'>
