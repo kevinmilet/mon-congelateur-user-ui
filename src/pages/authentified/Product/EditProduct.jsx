@@ -134,7 +134,7 @@ const EditProduct = () => {
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<div className='container'>
 								<label htmlFor='name'>
-									<b>Nom du congélateur</b>{' '}
+									<b>Nom du produit</b>{' '}
 									<span className='error-msg'>{errors.name?.message}</span>
 								</label>
 								<input
