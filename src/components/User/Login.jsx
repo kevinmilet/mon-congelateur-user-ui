@@ -12,6 +12,7 @@ import sha256 from 'sha256';
 const Login = () => {
 	const navigate = useNavigate();
 	const [userInfos, setUserInfos] = useState({});
+	const [isDisabled, setIsDisabled] = useState(false);
 
 	const validationSchema = Yup.object()
 		.shape({
@@ -35,6 +36,7 @@ const Login = () => {
 	const { errors } = formState;
 
 	const onSubmit = credentials => {
+		setIsDisabled(!isDisabled);
 		authService
 			.login(credentials)
 			.then(response => {
@@ -52,6 +54,7 @@ const Login = () => {
 						{ expires: 30 }
 					);
 				}
+				setIsDisabled(!isDisabled);
 				navigate('/monespace');
 			})
 			.catch(error => {
@@ -83,6 +86,7 @@ const Login = () => {
 								<span className='error-msg'>{errors.email?.message}</span>
 							</label>
 							<input
+								disabled={isDisabled}
 								type='email'
 								placeholder='Entrez votre email'
 								id='email'
@@ -95,6 +99,7 @@ const Login = () => {
 								<span className='error-msg'>{errors.password?.message}</span>
 							</label>
 							<input
+								disabled={isDisabled}
 								type='password'
 								placeholder='Entrez votre mot de passe'
 								id='password'
@@ -112,9 +117,10 @@ const Login = () => {
 							<label htmlFor='remember'>Se souvenir de moi</label> */}
 
 							<input
+								disabled={isDisabled}
 								type='submit'
 								value='Connexion'
-								className='connexion-btn'
+								className={`connexion-btn ${isDisabled ? 'disabled' : ''}`}
 							/>
 						</div>
 

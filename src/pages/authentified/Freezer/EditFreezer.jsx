@@ -40,8 +40,6 @@ const EditFreezer = () => {
 			id: ~~id,
 		};
 
-		console.log(datas);
-
 		freezerService
 			.updateFreezer(datas)
 			.then(response => {
@@ -121,7 +119,11 @@ const EditFreezer = () => {
 								>
 									<option defaultValue value='' />
 									{freezerTypes?.map(item => (
-										<option value={item.id} key={item.id}>
+										<option
+											value={item.id}
+											key={item.id}
+											selected={item.id === freezer.freezer_type_id}
+										>
 											{utilsService.capitalize(item.name)}
 										</option>
 									))}

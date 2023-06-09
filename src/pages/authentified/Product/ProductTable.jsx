@@ -76,6 +76,7 @@ const ProductTable = ({ freezerId }) => {
 								<ProductCard
 									product={product}
 									productType={product.ProductType}
+									setProducts={setProducts}
 								/>
 							</div>
 						))}

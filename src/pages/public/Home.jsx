@@ -1,5 +1,4 @@
 import React from 'react';
-import Modal from '../../components/Tools/Modal';
 
 const Home = () => {
 	return (

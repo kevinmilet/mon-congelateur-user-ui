@@ -1,4 +1,5 @@
 import Axios from './caller.service';
+// eslint-disable-next-line no-unused-vars
 import jwtDecode, { JwtPayload } from 'jwt-decode';
 
 const login = credentials => {
