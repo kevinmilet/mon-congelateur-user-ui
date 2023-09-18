@@ -1,0 +1,36 @@
+.form-container {
+	margin: 10px auto;
+	position: relative;
+	display: flex;
+	max-width: 500px;
+	padding: 1.5rem;
+
+	input[type='text'] {
+		width: 100%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		display: inline-block;
+		border: 1px solid #57c4e5ff;
+		border-right: none;
+		border-top-left-radius: 16px;
+		border-bottom-left-radius: 16px;
+		box-sizing: border-box;
+
+		&:focus,
+		&:focus-visible {
+			border: 1px solid #d55672ff;
+		}
+	}
+
+	button {
+		float: right;
+		padding: 12px 20px;
+		margin: 8px 0;
+		border-top-right-radius: 16px;
+		border-bottom-right-radius: 16px;
+		background-color: #57c4e5ff;
+		color: #fff;
+		border: none;
+		cursor: pointer;
+	}
+}

@@ -3,7 +3,8 @@ import { authService } from './auth.service';
 
 // Paramétrage de base
 const Axios = axios.create({
-	baseURL: 'https://myfreezer-api.kevin-milet.fr',
+	// baseURL: 'https://myfreezer-api.kevin-milet.fr',
+	baseURL: 'http://localhost:3001',
 });
 
 // Intercepteur pour la mise en place du token dans la requête
